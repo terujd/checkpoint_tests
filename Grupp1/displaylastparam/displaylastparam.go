@@ -1,10 +1,15 @@
-/*displayalrevm
+/*displaylastparam
 Instructions
-Write a program that displays the alphabet in reverse, with even letters in uppercase, and odd letters in lowercase, followed by a newline ('\n').
+Write a program that displays its last argument, if there is one.
 
 Usage
-$ go run . | cat -e
-zYxWvUtSrQpOnMlKjIhGfEdCbA$
+$ go run . hello there
+there
+$ go run . "hello there" how are you
+you
+$ go run . "hello there"
+hello there
+$ go run .
 $*/
 
 package main
