@@ -1,6 +1,7 @@
 /*paramcount
 Instructions
-Write a program that displays the number of arguments passed to it. This number will be followed by a newline ('\n').
+Write a program that displays the number of arguments passed to it.
+This number will be followed by a newline ('\n').
 
 If there is no argument, the program displays 0 followed by a newline.
 
