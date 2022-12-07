@@ -1,8 +1,11 @@
 /*wdmatch
 Instructions
-Write a program that takes two string and checks whether it is possible to write the first string with characters from the second string. This rewrite must respect the order in which these characters appear in the second string.
+Write a program that takes two string and checks whether it is possible to write,
+the first string with characters from the second string.
+This rewrite must respect the order in which these characters appear in the second string.
 
-If it is possible, the program displays the string followed by a newline ('\n'), otherwise it simply displays nothing.
+If it is possible, the program displays the string followed by a newline ('\n'),
+otherwise it simply displays nothing.
 
 If the number of arguments is different from 2, the program displays nothing.
 
@@ -19,3 +22,39 @@ $ go run .
 $*/
 
 package main
+
+import (
+	"os"
+
+	"github.com/01-edu/z01"
+)
+
+func compare(s, s2 string) {
+	res := ""
+	for _, e := range s {
+		for i, e2 := range s2 {
+			if e == e2 {
+				res += string(e)
+				s2 = s2[i+1:]
+				break
+			}
+		}
+	}
+	if res == s {
+		printStr(res)
+	}
+}
+
+func printStr(s string) {
+	for _, v := range s {
+		z01.PrintRune(v)
+	}
+	z01.PrintRune('\n')
+}
+
+func main() {
+	if len(os.Args) != 3 {
+		return
+	}
+	compare(os.Args[1], os.Args[2])
+}
