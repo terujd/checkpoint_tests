@@ -7,6 +7,7 @@ $ go run .
 Hello World!
 $*/
 
+/* Vår lösning
 package main
 
 import "github.com/01-edu/z01"
@@ -18,6 +19,21 @@ func main() {
 func printStr(s string) {
 	for _, e := range s {
 		z01.PrintRune(e)
+	}
+	z01.PrintRune('\n')
+}*/
+
+// Stefanies lösning
+package main
+
+import (
+	"github.com/01-edu/z01"
+)
+
+func main() {
+	a := "Helllo World!"
+	for _, v := range a {
+		z01.PrintRune(v)
 	}
 	z01.PrintRune('\n')
 }

@@ -14,6 +14,7 @@ $ go run . | cat -e
 0$
 $*/
 
+/* Vår lösning
 package main
 
 import (
@@ -25,4 +26,22 @@ import (
 func main() {
 	z01.PrintRune(rune(len(os.Args) - 1 + '0')) // kollar längden(len) på argumentet(os.Args) och tar bort filnamnet(-1)
 	z01.PrintRune('\n')                         //och gör om till en runa(rune)
+}*/
+
+// Stefanies lösning
+package main
+
+import (
+	"os"
+
+	"github.com/01-edu/z01"
+)
+
+func main() {
+	if len(os.Args) == 0 {
+		return
+	}
+	param := len(os.Args[1:])
+
+	z01.PrintRune(rune(param) + 48)
 }

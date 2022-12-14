@@ -20,4 +20,31 @@ $
 $ go run .
 $*/
 
+// Stefanies lösning
 package main
+
+import (
+	"os"
+
+	"github.com/01-edu/z01"
+)
+
+func main() {
+	args := os.Args[1:]
+	if len(args) != 1 {
+		z01.PrintRune('\n')
+		return
+	} else {
+		s := args[0]
+		for _, c := range s {
+			if c >= 'a' && c <= 'z' {
+				c = 'z' - c + 'a'
+			} else if c >= 'A' && c <= 'Z' {
+				c = 'A' - c + 'Z'
+			}
+			z01.PrintRune(c)
+		}
+		z01.PrintRune('\n')
+	}
+	z01.PrintRune('\n')
+}

@@ -34,4 +34,24 @@ $ go run .
 250
 $*/
 
+//Stefanies lösning
+
 package main
+
+import (
+	"strconv"
+
+	"github.com/01-edu/z01"
+)
+
+func ReduceInt(a []int, f func(int, int) int) {
+	n := a[0]
+	for i := 1; i < len(a); i++ {
+		n = f(n, a[i])
+	}
+	n2 := strconv.Itoa(n)
+	for _, r := range n2 {
+		z01.PrintRune(r)
+	}
+	z01.PrintRune('\n')
+}

@@ -19,4 +19,37 @@ $ go run .
 $ go run . 64 1024
 $*/
 
+// Stefanies lösning
 package main
+
+import (
+	"os"
+	"strconv"
+
+	"github.com/01-edu/z01"
+)
+
+func main() {
+	args := os.Args[1:]
+	var res string
+	if len(args) == 1 {
+		n, _ := strconv.Atoi(args[0])
+		if n > 0 {
+			for n%2 == 0 {
+				n /= 2
+			}
+			if n == 1 {
+				res = "true"
+			}
+		}
+		if n == 0 || n != 1 {
+			res = "false"
+		}
+	} else {
+		os.Exit(0)
+	}
+	for _, v := range res {
+		z01.PrintRune(v)
+	}
+	z01.PrintRune('\n')
+}

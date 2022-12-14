@@ -7,6 +7,7 @@ $ go run . | cat -e
 aBcDeFgHiJkLmNoPqRsTuVwXyZ$
 $*/
 
+/* vår lösning
 package main
 
 import "github.com/01-edu/z01"
@@ -20,4 +21,23 @@ func printStr(s string) {
 		z01.PrintRune(e)
 	}
 	z01.PrintRune('\n')
+}*/
+
+//Stefanies lösning
+package main
+
+import "github.com/01-edu/z01"
+
+func main() {
+	for k := 0; k < 26; k++ {
+		var lower = 97 //97 = a in ascii
+		if k%2 == 0 {
+			z01.PrintRune(rune(lower + k))
+		}
+		var upper = 65 //65 = A in ascii
+		if k&2 != 0 {
+			z01.PrintRune(rune(upper + k))
+		}
+		z01.PrintRune('\n')
+	}
 }

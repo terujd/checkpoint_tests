@@ -18,4 +18,41 @@ URYYB, URYC
 $ go run .
 $*/
 
+//Stefanies lösning
+
 package main
+
+import (
+	"os"
+
+	"github.com/01-edu/z01"
+)
+
+func main() {
+	if len(os.Args) == 2 {
+		s := os.Args[1]
+		var result string
+
+		for i := 0; i < len(s); i++ {
+			if s[i] >= 'a' && s[i] <= 'm' {
+				result += string(s[i] + 13)
+			}
+			if s[i] >= 'n' && s[i] <= 'z' {
+				result += string(s[i] - 13)
+			}
+			if s[i] >= 'A' && s[i] <= 'M' {
+				result += string(s[i] + 13)
+			}
+			if s[i] >= 'N' && s[i] <= 'Z' {
+				result += string(s[i] - 13)
+			}
+			if s[i] < 'A' || s[i] > 'Z' && s[i] < 'a' || s[i] > 'z' {
+				result += string(s[i])
+			}
+		}
+		for _, v := range result {
+			z01.PrintRune(v)
+		}
+		z01.PrintRune('\n')
+	}
+}

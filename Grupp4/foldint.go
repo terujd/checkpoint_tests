@@ -41,3 +41,35 @@ $ go run .
 $*/
 
 package main
+
+import (
+	"github.com/01-edu/z01"
+)
+
+func FoldInt(f func(int, int) int, a []int, n int) {
+	for i := 0; i <= (len(a))-1; i++ {
+		n = f(n, a[i])
+	}
+	if n == 0 {
+		z01.PrintRune('0')
+		z01.PrintRune('\n')
+		return
+	}
+	minus := false
+	if n < 0 {
+		minus = true
+		n = n * -1
+	}
+	nString := ""
+	for n > 0 {
+		nString = string(n%10+48) + nString
+		n = n / 10
+	}
+	if minus == true {
+		nString = "-" + nString
+	}
+	for _, r := range nString {
+		z01.PrintRune(r)
+	}
+	z01.PrintRune('\n')
+}

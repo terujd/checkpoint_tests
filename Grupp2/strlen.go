@@ -24,8 +24,31 @@ And its output :
 $ go run .
 12
 $*/
+/*
+count := 0
+for range s
+count++
+return count
+*/
 
+/* Vår lösning
 package main
+
+func StrLen(s string) int {
+	return len([]rune(s))
+}*/
+
+//Stefanies lösning
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	l := StrLen("Hello World!")
+	fmt.Println(l)
+}
 
 func StrLen(s string) int {
 	return len([]rune(s))
