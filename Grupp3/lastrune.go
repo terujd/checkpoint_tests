@@ -44,6 +44,14 @@ func main() {
 	z01.PrintRune('\n')
 }
 
+/*Vår lösning
 func LastRune(s string) rune {
 	return rune(s[len(s)-1])
+}*/
+
+//Stefanies lösning
+func LastRune(s string) rune {
+	i := []rune(s)
+	j := len(i)
+	return i[j-1]
 }

@@ -16,4 +16,28 @@ abcd
 $ go run . "something" "a" "o" "b" "c"
 $*/
 
+//Stefanies lösning
 package main
+
+import (
+	"os"
+
+	"github.com/01-edu/z01"
+)
+
+func main() {
+
+	if len(os.Args) != 4 {
+		return
+	}
+	first := os.Args[1]
+	second := os.Args[2]
+	third := os.Args[3]
+	for _, v := range first {
+		if string(v) == second { // string(v) will also read the special characters
+			v = rune(third[0])
+		}
+		z01.PrintRune(v)
+	}
+	z01.PrintRune('\n')
+}

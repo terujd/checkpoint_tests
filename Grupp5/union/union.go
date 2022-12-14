@@ -22,4 +22,36 @@ $ go run . rien | cat -e
 $
 */
 
+//Stefanies lösning
 package main
+
+import (
+	"os"
+
+	"github.com/01-edu/z01"
+)
+
+func check(result string, character rune) bool { //checks if a character already exists in result and returns either true or false
+	for _, r := range result {
+		if r == character {
+			return false
+		}
+	}
+	return true
+}
+func main() {
+	if len(os.Args) == 3 {
+		str := os.Args[1] + os.Args[2]
+		result := ""
+		for _, r := range str { // loops through combined strings and saves only the unique characters by running each character in the check function
+			if check(result, r) == true {
+				result = result + string(r)
+			}
+		}
+		for _, r := range result {
+			z01.PrintRune(r)
+		}
+		z01.PrintRune('\n')
+	}
+	z01.PrintRune('\n')
+}

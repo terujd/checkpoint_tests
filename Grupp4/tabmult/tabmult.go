@@ -28,4 +28,52 @@ $ go run .
 
 $*/
 
+//Stefanies lösning
 package main
+
+//toimii
+import (
+	"os"
+	"strconv"
+
+	"github.com/01-edu/z01"
+)
+
+func main() {
+	if len(os.Args) == 1 {
+		z01.PrintRune('\n')
+		return
+	}
+	n, _ := strconv.Atoi(os.Args[1])
+	for i := 1; i < 10; i++ {
+		res := convertIntToString(i * n)
+		z01.PrintRune(rune(i + 48))
+		z01.PrintRune(' ')
+		z01.PrintRune('x')
+		z01.PrintRune(' ')
+		nr := convertIntToString(n)
+		for _, r := range nr {
+			z01.PrintRune(r)
+		}
+		z01.PrintRune(' ')
+		z01.PrintRune('=')
+		z01.PrintRune(' ')
+		for _, r := range res {
+			z01.PrintRune(r)
+		}
+		z01.PrintRune('\n')
+	}
+}
+
+//itoa
+func convertIntToString(n int) string {
+	if n == 0 {
+		return "0"
+	}
+	result := ""
+	for n > 0 {
+		result = string(n%10+48) + result
+		n /= 10
+	}
+	return result
+}

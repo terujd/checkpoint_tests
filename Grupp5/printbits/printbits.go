@@ -14,6 +14,7 @@ $ go run . 1 1
 $ go run .
 $*/
 
+/* Vår lösning
 package main
 
 import "github.com/01-edu/z01"
@@ -26,4 +27,38 @@ func PrintBits(octet byte) {
 			z01.PrintRune('0')
 		}
 	}
+}*/
+
+//Stefanies lösning
+package main
+
+//toimii
+import (
+	"os"
+	"strconv"
+
+	"github.com/01-edu/z01"
+)
+
+func printBits(octet byte) {
+	for i := 7; i >= 0; i-- {
+		if octet&(1<<uint(i)) != 0 {
+			z01.PrintRune('1')
+		} else {
+			z01.PrintRune('0')
+		}
+	}
+}
+func main() {
+	if len(os.Args) != 2 {
+		return
+	} else {
+		a, _ := strconv.Atoi(os.Args[1])
+		printBits(byte(a))
+	}
+}
+func main() {
+	printBits(1)
+	printBits(128)
+	printBits(0)
 }

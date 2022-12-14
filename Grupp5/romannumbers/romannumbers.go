@@ -1,8 +1,10 @@
 /*romannumbers
 Instructions
-Write a program called rn. The objective is to convert a number, given as an argument, into a roman number and print it with its roman number calculation.
+Write a program called rn. The objective is to convert a number,
+given as an argument, into a roman number and print it with its roman number calculation.
 
-The program should have a limit of 4000. In case of an invalid number, for example "hello" or 0 the program should print ERROR: cannot convert to roman digit.
+The program should have a limit of 4000. In case of an invalid number,
+for example "hello" or 0 the program should print ERROR: cannot convert to roman digit.
 
 Roman Numerals reminder:
 
@@ -13,7 +15,12 @@ L	50
 C	100
 D	500
 M	1000
-For example, the number 1732 would be denoted MDCCXXXII in Roman numerals. However, Roman numerals are not a purely additive number system. In particular, instead of using four symbols to represent a 4, 40, 9, 90, etc. (i.e., IIII, XXXX, VIIII, LXXXX, etc.), such numbers are instead denoted by preceding the symbol for 5, 50, 10, 100, etc., with a symbol indicating subtraction. For example, 4 is denoted IV, 9 as IX, 40 as XL, etc.
+For example, the number 1732 would be denoted MDCCXXXII in Roman numerals.
+However, Roman numerals are not a purely additive number system.
+In particular, instead of using four symbols to represent a 4, 40, 9, 90, etc.
+(i.e., IIII, XXXX, VIIII, LXXXX, etc.), such numbers are instead denoted by preceding the symbol
+for 5, 50, 10, 100, etc., with a symbol indicating subtraction.
+For example, 4 is denoted IV, 9 as IX, 40 as XL, etc.
 
 The following table gives the Roman numerals for the first few positive integers.
 
@@ -43,4 +50,70 @@ $ go run . 4000
 ERROR: cannot convert to roman digit
 $*/
 
+//Stefanies lösning*
 package main
+
+import (
+	"fmt"
+	"os"
+)
+
+func main() {
+	if len(os.Args) != 2 {
+		return
+	}
+	input := os.Args[1]
+	if !isnumeral(input) {
+		fmt.Printf("ERROR: cannot convert to roman digit" + "\n")
+		return
+	}
+	if atoi(input) < 1 || atoi(input) > 3999 {
+		fmt.Printf("ERROR: cannot convert to roman digit" + "\n")
+		return
+	}
+	fmt.Printf(intToRomanCalc(atoi(input)) + "\n")
+	fmt.Printf(intToRoman(atoi(input)) + "\n")
+}
+func isnumeral(s string) bool {
+	for _, c := range s {
+		if c < '0' || c > '9' {
+			return false
+		}
+	}
+	return true
+}
+func atoi(s string) int {
+	result := 0
+	for _, c := range s {
+		result = result*10 + int(c-'0')
+	}
+	return result
+}
+func intToRomanCalc(num int) string {
+	var roman string = ""
+	var numbers = []int{1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000}
+	var romans = []string{"I+", "(V-I)+", "V+", "(X-I)+", "X+", "(L-X)+", "L+", "(C-X)+", "C+", "(D-C)+", "D+", "(M-C)+", "M+"}
+	var index = len(romans) - 1
+	for num > 0 {
+		for numbers[index] <= num {
+			roman += romans[index]
+			num -= numbers[index]
+		}
+		index -= 1
+	}
+	return roman[:len(roman)-1]
+}
+func intToRoman(num int) string {
+	var roman string = ""
+	var numbers = []int{1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000}
+	var romans = []string{"I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "CD", "D", "CM", "M"}
+	var index = len(romans) - 1
+	for num > 0 {
+		for numbers[index] <= num {
+			roman += romans[index]
+			num -= numbers[index]
+		}
+		index -= 1
+	}
+	return roman
+}

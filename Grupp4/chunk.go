@@ -29,4 +29,24 @@ $ go run .
 [[0 1 2 3] [4 5 6 7]]
 $*/
 
+//Stefanies lösning
 package main
+
+import (
+	"fmt"
+)
+
+func Chunk(slice []int, size int) {
+	if size <= 0 {
+		fmt.Println("")
+	} else if len(slice) == 0 {
+		fmt.Println(slice)
+	} else {
+		a := make([][]int, 0, size)
+		for size < len(slice) {
+			a = append(a, slice[0:size])
+			slice = slice[size:]
+		}
+		fmt.Println(append(a, slice))
+	}
+}
